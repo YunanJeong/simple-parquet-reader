@@ -1,6 +1,13 @@
 # import sys
+"""
+* import readline 유무에 따라  input() 함수 동작에 영향미침.
+https://stackoverflow.com/questions/45772230/arrow-keys-not-working-while-entering-data-for-input-function
+* input()은 파이썬 기본 빌트인 함수
+https://docs.python.org/3/library/functions.html#input
+
+"""
 import os
-import pdb
+import readline
 import awswrangler as wr
 import pandas as pd
 
@@ -29,7 +36,7 @@ def write_uri():
 
 def show_how_to_use():
     # TODO: how to use
-    print('\n\n===============How to Use================')
+    print('===============How to Use================')
     print('종료 : quit() or Ctrl+C')
     print('==========Command Example==========')
     print('df')
@@ -40,7 +47,7 @@ def show_how_to_use():
     print("df['logtype'].unique()")
     print("df.drop(columns=['logtype'])")
     print("df[df['logtype']=='name']")
-    print('===================================')
+    print('=========================================\n\n')
 
 
 if __name__ == '__main__':
@@ -51,6 +58,5 @@ if __name__ == '__main__':
     while True:
         cmd = input('(python_cli) ')
         os.system('clear')
-
         show_how_to_use()
         exec(f'print({cmd})')
