@@ -11,6 +11,7 @@ import readline
 import awswrangler as wr
 import pandas as pd
 
+
 def read_parq(parq_path):
     """parquet 파일 읽기 테스트
 
@@ -34,29 +35,53 @@ def write_uri():
     return uri
 
 
+def parse_cmd(input_):
+    # TODO: max_rows, max_columns 값 입력으로 변경
+    cmd = input_
+    if cmd == '1':
+        cmd = "pd.set_option('display.max_rows', None)"
+    if cmd == '2':
+        cmd = "pd.set_option('display.max_columns', None)"
+    if cmd == '3':
+        cmd = "pd.set_option('display.max_rows', 60)"
+    if cmd == '4':
+        cmd = "pd.set_option('display.max_columns', 0)"
+    return cmd
+
+
 def show_how_to_use():
-    # TODO: how to use
-    print('===============How to Use================')
+    # TODO: TEXT 파일 따로 빼기
+    print('\n===============How to Use================')
     print('종료 : quit() or Ctrl+C')
     print('==========Command Example==========')
+
+    print("1: pd.set_option('display.max_rows', None)")
+    print("2: pd.set_option('display.max_columns', None)")
+    print("3: pd.set_option('display.max_rows', 60)")
+    print("4: pd.set_option('display.max_columns', 0)")
+
     print('df')
-    print("pd.set_option('display.max_rows', None)")
-    print("pd.set_option('display.max_columns', None)")
     print('df.dtypes')
     print("df['logtype']")
     print("df['logtype'].unique()")
     print("df.drop(columns=['logtype'])")
     print("df[df['logtype']=='name']")
-    print('=========================================\n\n')
+    print('=========================================\n')
 
 
 if __name__ == '__main__':
+    # TODO: GUI로 변경
+    # TODO: 추후 실행파일 생성을 감안하여 리팩토링
     path = write_uri()
     df = read_parq(path)
 
     show_how_to_use()
     while True:
         cmd = input('(python_cli) ')
+        cmd = parse_cmd(cmd)
         os.system('clear')
+        try:
+            exec(f'print({cmd})')
+        except:
+            print('>>>>>>>Error')
         show_how_to_use()
-        exec(f'print({cmd})')
