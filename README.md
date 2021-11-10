@@ -14,7 +14,7 @@
 2. 업무용 목적
 - S3의 parquet 파일을 빠르게 조회
 - parquet 파일 하나 보기 위해 Jupyter를 켜고싶지 않다.
-- 윈도우 바탕화면에서 별도창으로 가볍게 열어보고 싶다.
+- 별도창으로 가볍게 열어보고 싶다.
 - 간단한 디버깅이나 유닛테스트를 하기 위해 breakpoint()대신 활용
 
 3. 기타
@@ -24,13 +24,13 @@
 - 그 시간에 차라리 상용툴을 사는게 낫다.
 
 4. 요구사항 및 초스피드 세팅
-- python3
-  - 윈도우 cmd에서 python3 --version 입력
-  - 없으면 마이크로소프트 마켓의 python3 다운로드로 바로 연결됨.
-- 모듈 설치
-  - pip3 install awswrangler
-  - pip3 install pandas
+- Ubuntu에서 개발
+- Windows에서 사용하려면, 다음과 같은 수정 필요
+  - parquetStarter.sh => parquetStarter.cmd
+  - parquetViewer.py에서 import readline 삭제
+- 공통
+  * python3
+    - awswrangler
+    - pandas
+    - awscli 설치 후 aws congifure 에서 인증설정 되어있어야 함
 
-- 메모
-  - 파이썬은 가상환경 신경 안쓰고 쌩-윈도우에 그냥 설치한다. 바탕화면에서 빠르게 쓸거니까.
-  - 어차피 메인 파이썬 프로젝트는 wsl로 할꺼니까 ㄱㅊ
