@@ -81,6 +81,7 @@ if __name__ == '__main__':
         cmd = parse_cmd(cmd)
         os.system('clear')
         try:
+            print('=========================================\n')
             exec(f'print({cmd})')
         except:
             print('>>>>>>>Error')
