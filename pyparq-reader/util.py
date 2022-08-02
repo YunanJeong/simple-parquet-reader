@@ -12,7 +12,12 @@ import awswrangler as wr
 import pandas as pd
 
 
-def read_parq(parq_path):
+def get_local_parq(parq_path):
+    df = 1
+    return df
+
+
+def get_s3_parq(parq_path):
     """parquet 파일 읽기 테스트
 
     Note:
@@ -29,7 +34,7 @@ def read_parq(parq_path):
     return df
 
 
-def write_uri():
+def write_s3_uri():
     """S3 URI 입력"""
     uri = input('***Write S3 URI: ')
     return uri
@@ -67,22 +72,3 @@ def show_how_to_use():
     print("df.drop(columns=['logtype'])")
     print("df[df['logtype']=='name']")
     print('=========================================\n')
-
-
-if __name__ == '__main__':
-    # TODO: GUI로 변경
-    # TODO: 추후 실행파일 생성을 감안하여 리팩토링
-    path = write_uri()
-    df = read_parq(path)
-
-    show_how_to_use()
-    while True:
-        cmd = input('(python_cli) ')
-        cmd = parse_cmd(cmd)
-        os.system('clear')
-        try:
-            print('=========================================\n')
-            exec(f'print({cmd})')
-        except:
-            print('>>>>>>>Error')
-        show_how_to_use()
